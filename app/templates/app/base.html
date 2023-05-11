@@ -1,0 +1,49 @@
+{% load static %}
+{% load bootstrap4 %} 
+{% bootstrap_css %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pipex</title>
+  
+<link rel="stylesheet" href="{% static 'styles/main.css' %}">
+</head>
+<link rel="stylesheet" href="{% static 'styles/fontawesome-free-6.4.0-web/css/fontawesome.min.css' %}">
+
+<style>
+    .contain{
+        display:grid;
+        grid-template-columns: 1fr 3fr 1fr;
+      }
+    
+</style>
+<body class="contain" >
+<!-- <body class='d-flex h-100  text-white bg-dark'> -->
+    <div >
+        <h3>Hi {{user.username}}  !<br />
+            <!-- {% if user.avatar %} -->
+            
+            <img
+            src="{{ user.avatar.url }}" 
+            class="rounded-circle"
+            height="22"
+            alt="Avatar"
+            loading="lazy" /> 
+            <!-- {% endif %} -->
+        </h3> <br />
+     {% include 'app/dashboard.html'%}
+    </div>
+    <div>
+        {%block content%} 
+        {%endblock%}
+    </div>
+    <div ></div>
+</body>
+
+</html>
+
+

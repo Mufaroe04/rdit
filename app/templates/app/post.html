@@ -1,0 +1,14 @@
+{% load static%}
+<div>
+    {%  for blog in blogs %}
+
+        <div  class="out">
+            <p>{{blog.post|safe}}</p> <br/>
+            <small><a href="{% url 'read' blog.id %}"> continue reading</a></small>
+            <br />
+            <small>{{blog.comments_count}} comments</small> <br />
+            <small> created {{blog.create_timestamp |timesince }} ago </small> 
+            <br />
+        </div>
+    {% endfor %}
+</div>

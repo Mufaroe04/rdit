@@ -1,0 +1,22 @@
+{% load static %}
+{% load bootstrap4 %} 
+{% bootstrap_css %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+   <div class="col-md-8">
+
+    <h3> confirm delete</h3>
+    <br>
+   <form action="" method="post" class="user">
+       {%csrf_token%}
+       <p class="p">Are you sure you want to delete ?{{obj |safe}} </p>
+     
+       <a href="{{ request.META.HTTP_REFERER }}">back</a>
+     <button type="submit">Confirm</button>
+   </form>
+   </body>
+    </div>
+   <div class="col-md-2"></div>
+</div>
+</div>

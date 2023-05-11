@@ -1,0 +1,44 @@
+{% load static %}
+{% load bootstrap4 %} 
+{% bootstrap_css %}
+<!-- {% block content%}  -->
+<style>
+  .user-update{
+    width: 50%;
+    height: fit-content;
+    text-align: center;
+}
+</style>
+<body class="text-center" >
+  <main class="form-signin w-100 m-auto">
+    <div class="container">
+      <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-8">
+        <form action="" method="post" class="user-update">
+          {% csrf_token%}
+          {% for message in messages%}
+          <span class="alert"> {{message}}</span>
+          {%endfor%} <br>
+          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <!-- <label for=""  >username</label> <br> -->
+        <input type="text" name="username" id="" placeholder="username" class="form-control" > <br>
+        <!-- <label for="">password</label> <br> -->
+        <input type="password" name="password" id="" class="form-control" placeholder="password"> <br><br>
+        {% buttons %}
+        <button type="submit" class="w-10 btn btn-lg btn-primary" > login</button>  
+        {% endbuttons %}
+    
+        <span> <a href="/app/register">sign up</a></span>
+      </form>
+
+      </div>
+      <div class="col-md-1"></div>  
+      </div>
+    </div>
+  
+</main>
+<!-- {% endblock%} -->
+
+</body>
+

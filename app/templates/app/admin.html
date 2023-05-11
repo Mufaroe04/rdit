@@ -1,0 +1,30 @@
+{% extends 'app/base.html'%}
+{% load static%}
+{% static "static" as baseUrl %}
+{% load bootstrap4 %} 
+{% bootstrap_css %}
+{%block content%} 
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <h2>Admin</h2>
+            <h4>All your Blogs {{posts.count}}</h4> <br />
+            <div>
+                {% for blog in posts %}
+                <div class="out">
+                    <p>{{blog.post|safe}}</p> <br />
+                    <small>created {{blog.create_timestamp}} ago</small> <br />
+                    <button type='button' ><a href="{% url 'delete' blog.id %}">delete</a></button>
+                    <button type='button' ><a href="{% url 'update-blog' blog.id %}">update</a></button><br /> 
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+
+    </div>
+   
+</div>
+{% endblock %}

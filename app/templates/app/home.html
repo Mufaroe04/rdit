@@ -1,0 +1,21 @@
+{% extends "booking/base.html" %}
+{% load static%}
+{% block content%} 
+{% load bootstrap4 %}
+{% bootstrap_css %}
+<br>
+<div class="container">
+  <div class="row">
+  <div class="col-md-2">
+    {% include 'booking/Dashboad.html' %}
+  </div> 
+  <div class="col-md-8">
+    <h5>Today Schedules</h5>
+    <div>{% include 'booking/today.html' %}</div>
+  </div>
+  <div class="col-md-2">
+    <h5>Upcoming Schedules</h5>
+  </div>
+  </div>
+</div>
+{% endblock %}

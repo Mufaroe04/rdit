@@ -1,0 +1,36 @@
+{% extends 'app/base.html'%}
+{% load static%}
+{% static "static" as baseUrl %}
+{% load bootstrap4 %} 
+{% bootstrap_css %}
+{% load crispy_forms_tags %}
+{%block content%} 
+<div class="container">
+    <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p>{{blog.post|safe}}</p> <br />
+        <small> created {{blog.create_timestamp |timesince }} ago </small> 
+        <div><br />
+            <h5>comments {{comments.count}}</h5> <br />
+            {%  for comment in comments %}
+            <div>
+                <small> {{comment.comment_by}}</p>  </small> 
+                <p>{{comment.comment_body}}<br/>
+                    <b>  <small> created {{comment.create_timestamp |timesince }} ago </small> </b>
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+        <br />
+    <div>
+        <form method="POST">
+            {% csrf_token%}
+            <input type="text" placeholder="comment" name="comment"  class="form-control"> <button type="submit" class="w-10 btn btn-lg btn-primary" >send</button>
+        </form>
+    </div>
+    </div>
+    <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock %}
