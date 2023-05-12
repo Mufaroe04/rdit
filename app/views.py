@@ -20,7 +20,7 @@ def login(request):
             return redirect('login')
     else:
         return render(request,'app/login.html')
-# @login_required(login_url='login/')
+@login_required()
 def  logout(request):
      auth.logout(request)
      return redirect('login')
@@ -39,6 +39,7 @@ def register(request):
         context={'form':form}
         return render(request,'app/register.html',context)
 # read, admin, delete: Blog, Comment, User
+@login_required()
 def blog(request):
     form=BlogForm()
     if request.method=='POST':
@@ -51,10 +52,12 @@ def blog(request):
     else :
         context={'form':form}
         return render(request,'app/blog.html',context)
+@login_required()
 def Admin(request):
     posts=Blog.objects.filter(created_by=request.user)
     context={'posts':posts}
     return render(request,'app/admin.html',context)
+@login_required()
 def delete(request,pk):
     obj=Blog.objects.get(id=pk)
     if request.method=="POST":
@@ -62,6 +65,7 @@ def delete(request,pk):
         return redirect('home')
     context={ 'obj': obj}
     return render(request,'app/delete.html',context)  
+@login_required()
 def update_blog(request,pk):
     blog=Blog.objects.get(id=pk) 
     form=BlogForm(instance=blog)
@@ -71,6 +75,7 @@ def update_blog(request,pk):
             return redirect('home')
     context={'form':form}
     return render(request,'app/update_blog.html',context)
+@login_required()
 def profile(request):
     user=User.objects.get(id=request.user.id )
     form=UserForm(instance=user)
@@ -82,6 +87,7 @@ def profile(request):
             return redirect('home')
     context={'form':form}
     return render(request,'app/profile.html',context)
+@login_required()
 def read(request,pk):
     blog=Blog.objects.get(id=pk)
     comments=Comment.objects.filter(blog_commented=blog)
